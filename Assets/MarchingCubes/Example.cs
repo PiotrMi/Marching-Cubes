@@ -117,9 +117,14 @@ namespace MarchingCubesProject
         public GameObject go;
         public bool updating;
 
+        void RemoveDoubles(out List<Vector3> outVerts, out List<int> outIndex, List<Vector3> verts, List<int> index){
+            outVerts = verts;
+            outIndex = index;
+        }
+
         void Update()
         {
-            transform.Rotate(Vector3.up, 10.0f * Time.deltaTime);
+            //transform.Rotate(Vector3.up, 10.0f * Time.deltaTime);
 
             if (updating)
             {
@@ -170,6 +175,8 @@ namespace MarchingCubesProject
                 //The mesh produced is not optimal. There is one vert for each index.
                 //Would need to weld vertices for better quality mesh.
                 marching.Generate(voxels, width, height, length, verts, indices);
+
+                RemoveDoubles(out verts, out indices, verts, indices);
 
                 //A mesh in unity can only be made up of 65000 verts.
                 //Need to split the verts between multiple meshes.
