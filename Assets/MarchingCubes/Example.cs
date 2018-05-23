@@ -206,7 +206,7 @@ namespace MarchingCubesProject
                     go.GetComponent<MeshFilter>().mesh = mesh;
                     go.transform.localPosition = new Vector3(-width / 2, -height / 2, -length / 2);
 
-                    //meshes.Add(go);
+                    meshes.Add(go);
                 }
             }
         }
